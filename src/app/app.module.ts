@@ -9,12 +9,14 @@ import {ChatCommunicationService} from "./chat-communication.service";
 import {ChatViewComponent} from "./chat-view/chat-view.component";
 import {RouterModule} from "@angular/router";
 import {routes} from "./route";
+import {LoginViewComponent} from "./login-view/login-view.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     UsersListComponent,
-    ChatViewComponent
+    ChatViewComponent,
+    LoginViewComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

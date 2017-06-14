@@ -21,7 +21,6 @@ export class ChatViewComponent implements OnInit {
   @ViewChild('messagesDiv')
   private messagesDiv: ElementRef;
 
-  name: string = '';
   text: string = '';
   connected: boolean;
 
@@ -51,13 +50,6 @@ export class ChatViewComponent implements OnInit {
         this.afterChange(ChangeDetectionMethod.WaitForDetection, () => this.messagesDiv.nativeElement.scrollTop = this.messagesDiv.nativeElement.scrollHeight);
       }
     });
-  }
-
-  connect() {
-    if (!this.name) {
-      return;
-    }
-    this.chatService.connect(this.name);
   }
 
   send() {
