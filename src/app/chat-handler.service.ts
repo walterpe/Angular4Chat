@@ -3,35 +3,40 @@ import {Observable} from 'rxjs/Observable';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
 import {Message} from './message';
+import {ChatCommunicationService} from "./chat-communication.service";
 
 @Injectable()
 export class ChatHandlerService {
 
+  constructor(private chatCommunication: ChatCommunicationService) {
+    this.chatCommunication.messagesStream().subscribe(m => {
+      this.messages.push(m);
+    });
+    this.chatCommunication.usersStream().subscribe(l => {
+      this.users = l;
+    });
+  }
+
   private messages: Message[] = [];
-  private users: string[] = ['Jean', 'Ulises', 'Sebastien'];
-  private isConnected: BehaviorSubject<Boolean> = new BehaviorSubject(false);
+  private users: string[] = [];
   private me: string = '';
 
   public connect(name: string) {
     this.me = name;
-    this.users.push(this.me);
-    this.isConnected.next(true);
-    setTimeout(() => {
-      this.isConnected.next(false)
-    }, 10000)
+    this.chatCommunication.connect(name);
   }
 
   public connected(): Observable<boolean> {
-    return this.isConnected.asObservable();
+    return this.chatCommunication.connected();
   }
 
   public send(text: string) {
     const message: Message = {
-      time: this.formatDate(new Date()),
-      author: this.me,
+      time: null,
+      author: null,
       text: text
     };
-    this.messages.push(message);
+    this.chatCommunication.sendMessage(message);
   }
 
   public showWarning(warning: string) {
