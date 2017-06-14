@@ -1,34 +1,47 @@
-import {ChangeDetectorRef, Component, ElementRef, NgZone, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, ElementRef, NgZone, OnInit, ViewChild} from '@angular/core';
 import {Message} from './message';
 import 'rxjs/add/operator/first';
+import {ChatHandlerService} from "./chat-handler.service";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
-  constructor(private cdRef: ChangeDetectorRef, private zone: NgZone) {
+  constructor(private chatService: ChatHandlerService, private cdRef: ChangeDetectorRef, private zone: NgZone) {
   }
 
   @ViewChild('textInput')
   private textInput: ElementRef;
 
-  // Inputs
   name: string = '';
   text: string = '';
+  connected: boolean;
 
-  // Display
-  connected: boolean = false;
-  users: string[] = ['Jean', 'Ulises', 'Sebastien'];
+  get messages(): Message[] {
+    return this.chatService.getMessages();
+  }
 
-  messages: Message[] = [];
+  get users(): string[] {
+    return this.chatService.getUsers();
+  }
+
+  ngOnInit() {
+    this.chatService.connected().subscribe(value => {
+      if (this.connected && !value) {
+        this.chatService.showWarning("Disconnected");
+      }
+      this.connected = value;
+    })
+  }
 
   connect() {
-    this.connected = true;
-    this.users.push(this.name);
-
+    if (!this.name) {
+      return;
+    }
+    this.chatService.connect(this.name);
     this.afterChange(ChangeDetectionMethod.WaitForDetection, () => this.focusMessageField());
   }
 
@@ -36,22 +49,15 @@ export class AppComponent {
     if (!this.text) {
       return;
     }
-    const message: Message = {
-      time: this.formatDate(new Date()),
-      author: this.name,
-      text: this.text
-    };
+    this.chatService.send(this.text);
     this.text = '';
-    this.messages.push(message);
     this.focusMessageField();
   }
 
   private focusMessageField() {
-    this.textInput.nativeElement.focus();
-  }
-
-  private formatDate(date: Date) {
-    return date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+    if (this.textInput && this.textInput.nativeElement) {
+      this.textInput.nativeElement.focus();
+    }
   }
 
   /* Show different execute code after the next digest cycle */
