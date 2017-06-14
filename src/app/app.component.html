@@ -19,9 +19,5 @@
       <button type="button" (click)="send()">Send</button>
     </div>
   </div>
-  <div class="list">
-    <ul>
-      <li *ngFor="let user of users">{{user}}</li>
-    </ul>
-  </div>
+  <users-list [users]="users"></users-list>
 </div>
