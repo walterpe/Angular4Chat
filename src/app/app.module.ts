@@ -10,13 +10,15 @@ import {ChatViewComponent} from "./chat-view/chat-view.component";
 import {RouterModule} from "@angular/router";
 import {routes} from "./route";
 import {LoginViewComponent} from "./login-view/login-view.component";
+import {DisconnectedViewComponent} from "./disconnected-view/disconnected-view.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     UsersListComponent,
     ChatViewComponent,
-    LoginViewComponent
+    LoginViewComponent,
+    DisconnectedViewComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

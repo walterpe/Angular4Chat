@@ -3,6 +3,7 @@ import {Message} from '../message'
 
 import {ChatHandlerService} from '../chat-handler.service'
 import {ChatCommunicationService} from '../chat-communication.service'
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -12,7 +13,11 @@ import {ChatCommunicationService} from '../chat-communication.service'
 })
 export class ChatViewComponent implements OnInit {
 
-  constructor(private chatCommunication: ChatCommunicationService, private chatService: ChatHandlerService, private cdRef: ChangeDetectorRef, private zone: NgZone) {
+  constructor(private chatCommunication: ChatCommunicationService,
+              private chatService: ChatHandlerService,
+              private cdRef: ChangeDetectorRef,
+              private zone: NgZone,
+              private router: Router) {
   }
 
   @ViewChild('textInput')
@@ -22,7 +27,6 @@ export class ChatViewComponent implements OnInit {
   private messagesDiv: ElementRef;
 
   text: string = '';
-  connected: boolean;
 
   get messages(): Message[] {
     return this.chatService.getMessages();
@@ -34,13 +38,11 @@ export class ChatViewComponent implements OnInit {
 
   ngOnInit() {
     this.chatService.connected().subscribe(value => {
-      if (this.connected && !value) {
-        this.chatService.showWarning("Disconnected");
-      }
-      if (value) {
+      if (!value) {
+        this.router.navigate(['/disconnected']);
+      } else {
         this.afterChange(ChangeDetectionMethod.WaitForDetection, () => this.focusMessageField());
       }
-      this.connected = value;
     });
     this.chatCommunication.messagesStream().subscribe(m => {
       const max = this.messagesDiv.nativeElement.scrollHeight - this.messagesDiv.nativeElement.offsetHeight;

@@ -4,11 +4,10 @@ import {ChatHandlerService} from '../chat-handler.service'
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-login-view',
-  templateUrl: './login-view.component.html',
-  styleUrls: ['./login-view.component.css']
+  templateUrl: './disconnected-view.component.html',
+  styleUrls: ['./disconnected-view.component.css']
 })
-export class LoginViewComponent implements OnInit {
+export class DisconnectedViewComponent implements OnInit {
 
   private name: string = '';
 

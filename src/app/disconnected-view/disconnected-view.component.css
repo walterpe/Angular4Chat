@@ -1,0 +1,19 @@
+:host {
+  width: 200px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+  background-color : rgb(210, 210, 210);
+  justify-content: space-around;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+button {
+  background-color: firebrick;
+  border: none;
+  padding: 5px;
+  color: white;
+}
