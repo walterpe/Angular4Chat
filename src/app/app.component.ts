@@ -74,6 +74,14 @@ export class AppComponent implements OnInit {
     }
   }
 
+  private writeToChat(text: string) {
+    if(this.text.slice(-1) != ' ') {
+      this.text += ' ';
+    }
+    this.text += text + ' ';
+    this.focusMessageField();
+  }
+
   /* Show different execute code after the next digest cycle */
   private afterChange(detectionType: ChangeDetectionMethod, methodToDelay: () => void) {
     switch (detectionType) {

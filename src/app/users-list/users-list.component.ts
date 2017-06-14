@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'users-list',
@@ -8,6 +8,13 @@ import {Component, Input} from '@angular/core';
 export class UsersListComponent {
 
   @Input()
-  private users: Array<string>
+  private users: string[];
+
+  @Output()
+  private onSelectUser = new EventEmitter<string>();
+
+  selectUser(user: string) {
+    this.onSelectUser.emit(user);
+  }
 
 }
