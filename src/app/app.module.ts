@@ -11,6 +11,7 @@ import {RouterModule} from "@angular/router";
 import {routes} from "./route";
 import {LoginViewComponent} from "./login-view/login-view.component";
 import {DisconnectedViewComponent} from "./disconnected-view/disconnected-view.component";
+import {ConnectedGuard} from "./connected.guard";
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {DisconnectedViewComponent} from "./disconnected-view/disconnected-view.c
   ],
   providers: [
     ChatHandlerService,
-    ChatCommunicationService
+    ChatCommunicationService,
+    ConnectedGuard
   ],
   bootstrap: [AppComponent]
 })
