@@ -18,6 +18,9 @@ import {MessageInterceptorComponent} from "./message-interceptor/message-interce
 import {PluginGiphyComponent} from "./plugin-giphy/plugin-giphy.component";
 import {GiphyService} from "./services/giphy.service";
 import {HttpModule} from "@angular/http";
+import {PluginBombComponent} from './plugin-bomb/plugin-bomb.component';
+import {PluginBeerComponent} from './plugin-beer/plugin-beer.component';
+import {BeerService} from './beer/beer-service';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,10 @@ import {HttpModule} from "@angular/http";
     MessageInterceptorComponent,
     PluginTestComponent,
     MessageViewComponent,
-    PluginGiphyComponent
+    PluginGiphyComponent,
+    PluginBombComponent,
+    PluginBeerComponent,
+    MessageViewComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -41,7 +47,8 @@ import {HttpModule} from "@angular/http";
     ChatHandlerService,
     ChatCommunicationService,
     ConnectedGuard,
-    GiphyService
+    GiphyService,
+    BeerService
   ],
   bootstrap: [AppComponent]
 })
