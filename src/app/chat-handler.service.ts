@@ -18,6 +18,7 @@ export class ChatHandlerService {
 
   private messages: Message[] = [];
   private users: string[] = [];
+  me: string = '';
   private _me: string = '';
 
   get me(): string {

@@ -8,6 +8,7 @@ import {UsersListComponent} from "./users-list/users-list.component";
 import {ChatCommunicationService} from "./chat-communication.service";
 import {ChatViewComponent} from "./chat-view/chat-view.component";
 import {RouterModule} from "@angular/router";
+import { HttpModule, JsonpModule } from '@angular/http';
 import {routes} from "./route";
 import {LoginViewComponent} from "./login-view/login-view.component";
 import {DisconnectedViewComponent} from "./disconnected-view/disconnected-view.component";
@@ -15,6 +16,8 @@ import {ConnectedGuard} from "./connected.guard";
 import {MessageViewComponent} from "./message-view/message-view.component";
 import {PluginTestComponent} from "./plugin-test/plugin-test.component";
 import {MessageInterceptorComponent} from "./message-interceptor/message-interceptor.component";
+import { PluginRatesComponent } from './plugin-rates/plugin-rates.component';
+import { PluginRatesService } from './plugin-rates/plugin-rates.service';
 import { PluginChuckComponent } from './plugin-chuck/plugin-chuck.component';
 import {ChuckService} from "./chuck.service";
 import { PluginIpComponent } from './plugin-ip/plugin-ip.component';
@@ -38,6 +41,7 @@ import {GiphyService} from "./services/giphy.service";
     MessageInterceptorComponent,
     PluginTestComponent,
     MessageViewComponent,
+    PluginRatesComponent,
     PluginChuckComponent,
     PluginIpComponent,
     PluginSunriseSunsetComponent,
@@ -46,13 +50,15 @@ import {GiphyService} from "./services/giphy.service";
   imports: [
     RouterModule.forRoot(routes),
     BrowserModule,
-    FormsModule,
-    HttpModule
+    HttpModule,
+    JsonpModule,
+    FormsModule
   ],
   providers: [
     ChatHandlerService,
     ChatCommunicationService,
     ConnectedGuard,
+    PluginRatesService,
     ChuckService,
     IpServiceService,
     SunriseSunsetService,
