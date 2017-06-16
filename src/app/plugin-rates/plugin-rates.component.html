@@ -8,7 +8,7 @@
   </select>
   <button (click)="compute()">Calcule!</button>
 </div>
-<div *ngIf="!showUI && !showUsage">
+<div *ngIf="showResult">
   {{amount}} {{base}} en {{target}} = {{result}}
 </div>
 <div *ngIf="showUsage">
