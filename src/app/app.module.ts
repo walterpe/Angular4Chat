@@ -15,6 +15,7 @@ import {DisconnectedViewComponent} from "./disconnected-view/disconnected-view.c
 import {ConnectedGuard} from "./connected.guard";
 import {MessageViewComponent} from "./message-view/message-view.component";
 import {PluginTestComponent} from "./plugin-test/plugin-test.component";
+import {PluginWeatherComponent} from "./plugin-weather/plugin-weather.component";
 import {MessageInterceptorComponent} from "./message-interceptor/message-interceptor.component";
 import { PluginRatesComponent } from './plugin-rates/plugin-rates.component';
 import { PluginRatesService } from './plugin-rates/plugin-rates.service';
@@ -40,6 +41,7 @@ import {GiphyService} from "./services/giphy.service";
     DisconnectedViewComponent,
     MessageInterceptorComponent,
     PluginTestComponent,
+    PluginWeatherComponent,
     MessageViewComponent,
     PluginRatesComponent,
     PluginChuckComponent,
