@@ -17,6 +17,7 @@ export class PluginRatesService {
   getRates(base:string, target:string): Observable<Rates> {
     return this.http.get(this.ratesUrl+'base='+base+'&symbols='+target).map(this.extractData).catch(this.handleError);
   }
+  
   private extractData(res: Response): Rates {
     let body = res.json();
     return body || { };

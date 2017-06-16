@@ -14,8 +14,7 @@ import {Rates}       from './rates';
 export class PluginRatesComponent extends PluginTemplateComponent {
 
   constructor(private ratesService:PluginRatesService,
-              private chatHandlerService:ChatHandlerService
-  ) {
+              private chatHandlerService:ChatHandlerService) {
     super()
   }
 
@@ -24,13 +23,14 @@ export class PluginRatesComponent extends PluginTemplateComponent {
   target:string = 'EUR';
   amount:number = 100;
   result:number = 0;
-  showUI:boolean;
-  showUsage:boolean;
+  showUI:boolean = false;
+  showUsage:boolean = false;
+  showResult:boolean = false;
   computed:boolean = false;
   rates:Rates;
 
-  currencies:string[] = [ "AUD", "BGN", "BRL", "CAD", "CHF", "CNY", "CZK", "DKK", "EUR", "GBP", "HKD",
-  "HRK", "HUF", "IDR", "ILS", "INR", "JPY", "KRW", "MXN", "MYR", "NOK", "NZD", "PHP",
+  currencies:string[] = ["AUD", "BGN", "BRL", "CAD", "CHF", "CNY", "CZK", "DKK", "EUR", "GBP", "HKD",
+    "HRK", "HUF", "IDR", "ILS", "INR", "JPY", "KRW", "MXN", "MYR", "NOK", "NZD", "PHP",
     "PLN", "RON", "RUB", "SEK", "SGD", "THB", "TRY", "USD", "ZAR"];
 
 
@@ -38,20 +38,23 @@ export class PluginRatesComponent extends PluginTemplateComponent {
     if (command != "rates") {
       return;
     }
-    
-    if (value == 'ui' && this.chatHandlerService.me === author){
-      this.showUI=true;
+
+    if (value == 'ui' && this.chatHandlerService.me === author) {
+      this.showUI = true;
+      this.intercept();
     } else if (value.indexOf(" en ") > 0) {
       this.amount = Number(value.slice(0, value.indexOf(" ")));
       let nextPart = value.slice(value.indexOf(" ") + 1);
       this.base = nextPart.slice(0, nextPart.indexOf(" en "));
       this.target = nextPart.slice(nextPart.indexOf(" en ") + 4);
       this.compute();
+      this.intercept();
+    } else if (this.chatHandlerService.me === author) {
+      this.writeUsage();
+      this.intercept();
     } else {
-        this.writeUsage();
+      this.discardMessage();
     }
-
-    this.intercept();
   }
 
   writeUsage() {
@@ -61,8 +64,12 @@ export class PluginRatesComponent extends PluginTemplateComponent {
 
   compute() {
     this.ratesService.getRates(this.base, this.target).subscribe(
-      rates => {this.result = rates.rates[this.target] * Number(this.amount); this.showUI=false;},
-      error =>  this.writeUsage()
+      rates => {
+        this.result = rates.rates[this.target] * Number(this.amount);
+        this.showUI = false;
+        this.showResult = true;
+      },
+      error => this.writeUsage()
     );
   }
 }
