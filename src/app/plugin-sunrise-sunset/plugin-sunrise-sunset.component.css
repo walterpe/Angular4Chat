@@ -1,7 +1,7 @@
 .spinner {
   width: 40px;
   height: 40px;
-  background-color: #ff0000;
+  background-color: #4FCB53;
 
   margin: 100px auto;
   -webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
@@ -25,4 +25,25 @@
         transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
         -webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
       }
+}
+
+.btn-container {
+  display: flex;
+}
+
+.btn-container button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 5px;
+  margin-right: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.btn-container button:hover {
+  background-color: #4FCB53;
 }
