@@ -1,7 +1,7 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from "@angular/platform-browser";
+import {NgModule} from "@angular/core";
 
-import { AppComponent } from './app.component';
+import {AppComponent} from "./app.component";
 import {FormsModule} from "@angular/forms";
 import {ChatHandlerService} from "./chat-handler.service";
 import {UsersListComponent} from "./users-list/users-list.component";
@@ -16,10 +16,10 @@ import {MessageViewComponent} from "./message-view/message-view.component";
 import {PluginTestComponent} from "./plugin-test/plugin-test.component";
 import {MessageInterceptorComponent} from "./message-interceptor/message-interceptor.component";
 import { PluginSunriseSunsetComponent } from './plugin-sunrise-sunset/plugin-sunrise-sunset.component';
-
-
 import { HttpModule } from '@angular/http';
 import {SunriseSunsetService} from "./plugin-sunrise-sunset/sunrise-sunset.service";
+import {PluginGiphyComponent} from "./plugin-giphy/plugin-giphy.component";
+import {GiphyService} from "./services/giphy.service";
 
 @NgModule({
   declarations: [
@@ -31,7 +31,8 @@ import {SunriseSunsetService} from "./plugin-sunrise-sunset/sunrise-sunset.servi
     MessageInterceptorComponent,
     PluginTestComponent,
     MessageViewComponent,
-    PluginSunriseSunsetComponent
+    PluginSunriseSunsetComponent,
+    PluginGiphyComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -43,7 +44,8 @@ import {SunriseSunsetService} from "./plugin-sunrise-sunset/sunrise-sunset.servi
     ChatHandlerService,
     ChatCommunicationService,
     ConnectedGuard,
-    SunriseSunsetService
+    SunriseSunsetService,
+    GiphyService
   ],
   bootstrap: [AppComponent]
 })
