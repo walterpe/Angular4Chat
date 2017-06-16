@@ -1,0 +1,16 @@
+button{
+    float:left;
+    padding: 5px;
+    margin: 5px;
+}
+
+.favorite{
+    float: right;
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+}
+
+.favorite:hover, .favorite.active{
+    background-color: #E7F00D;
+}
