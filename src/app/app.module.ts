@@ -1,7 +1,7 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from "@angular/platform-browser";
+import {NgModule} from "@angular/core";
 
-import { AppComponent } from './app.component';
+import {AppComponent} from "./app.component";
 import {FormsModule} from "@angular/forms";
 import {ChatHandlerService} from "./chat-handler.service";
 import {UsersListComponent} from "./users-list/users-list.component";
@@ -15,6 +15,9 @@ import {ConnectedGuard} from "./connected.guard";
 import {MessageViewComponent} from "./message-view/message-view.component";
 import {PluginTestComponent} from "./plugin-test/plugin-test.component";
 import {MessageInterceptorComponent} from "./message-interceptor/message-interceptor.component";
+import {PluginGiphyComponent} from "./plugin-giphy/plugin-giphy.component";
+import {GiphyService} from "./services/giphy.service";
+import {HttpModule} from "@angular/http";
 
 @NgModule({
   declarations: [
@@ -25,17 +28,20 @@ import {MessageInterceptorComponent} from "./message-interceptor/message-interce
     DisconnectedViewComponent,
     MessageInterceptorComponent,
     PluginTestComponent,
-    MessageViewComponent
+    MessageViewComponent,
+    PluginGiphyComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
     BrowserModule,
+    HttpModule,
     FormsModule
   ],
   providers: [
     ChatHandlerService,
     ChatCommunicationService,
-    ConnectedGuard
+    ConnectedGuard,
+    GiphyService
   ],
   bootstrap: [AppComponent]
 })
