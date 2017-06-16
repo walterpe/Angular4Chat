@@ -1,3 +1,18 @@
-<div>
-  {{write}}
+<div *ngIf="showUI">
+  <input type="number" step="5" [(ngModel)]="amount">
+  <select [(ngModel)]="base">
+    <option *ngFor="let c of currencies">{{c}}</option>
+  </select> en
+  <select [(ngModel)]="target">
+    <option *ngFor="let c of currencies">{{c}}</option>
+  </select>
+  <button (click)="compute()">Calcule!</button>
+</div>
+<div *ngIf="!showUI && !showUsage">
+  {{amount}} {{base}} en {{target}} = {{result}}
+</div>
+<div *ngIf="showUsage">
+  Usage : <br>
+'/rates ui' : vous affiche une interface de calcul de taux de change.<br>
+'/rates 100 EUR en USD' : vous donne le résultat de la conversion
 </div>

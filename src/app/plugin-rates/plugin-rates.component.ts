@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 
 import {PluginTemplateComponent} from '../plugin-template/plugin-template.component'
 import {PluginRatesService}       from './plugin-rates.service';
+import {ChatHandlerService} from "../chat-handler.service";
 import {Rates}       from './rates';
 
 
@@ -12,42 +13,56 @@ import {Rates}       from './rates';
 })
 export class PluginRatesComponent extends PluginTemplateComponent {
 
-  constructor(private ratesService:PluginRatesService) {
+  constructor(private ratesService:PluginRatesService,
+              private chatHandlerService:ChatHandlerService
+  ) {
     super()
   }
 
   private write:string;
+  base:string = 'CHF';
+  target:string = 'EUR';
+  amount:number = 100;
+  result:number = 0;
+  showUI:boolean;
+  showUsage:boolean;
+  computed:boolean = false;
   rates:Rates;
+
+  currencies:string[] = [ "AUD", "BGN", "BRL", "CAD", "CHF", "CNY", "CZK", "DKK", "EUR", "GBP", "HKD",
+  "HRK", "HUF", "IDR", "ILS", "INR", "JPY", "KRW", "MXN", "MYR", "NOK", "NZD", "PHP",
+    "PLN", "RON", "RUB", "SEK", "SGD", "THB", "TRY", "USD", "ZAR"];
 
 
   process(command:string, value:string, author:string) {
     if (command != "rates") {
       return;
     }
-
-    if (value.indexOf(" en ") > 0) {
-      let amount:string = value.slice(0, value.indexOf(" "));
+    
+    if (value == 'ui' && this.chatHandlerService.me === author){
+      this.showUI=true;
+    } else if (value.indexOf(" en ") > 0) {
+      this.amount = Number(value.slice(0, value.indexOf(" ")));
       let nextPart = value.slice(value.indexOf(" ") + 1);
-      let base = nextPart.slice(0, nextPart.indexOf(" en "));
-      let target = nextPart.slice(nextPart.indexOf(" en ") + 4);
-      this.ratesService.getRates(base, target).subscribe(
-        rates => this.write = value + ' =  ' + rates.rates[target] * Number(amount)
-      );
-    } else if (value.indexOf(" ") == -1) {
-      this.ratesService.getRates('CHF', value).subscribe(
-        rates => this.write = 'Rate CHF/' + value + ' : ' + rates.rates[value]
-      );
+      this.base = nextPart.slice(0, nextPart.indexOf(" en "));
+      this.target = nextPart.slice(nextPart.indexOf(" en ") + 4);
+      this.compute();
     } else {
-      let base = value.slice(0, value.indexOf(" "));
-      let target = value.slice(value.indexOf(" ") + 1);
-      this.ratesService.getRates(base, target).subscribe(
-        rates => this.write = 'Rate ' + base + '/' + target + ' : ' + rates.rates[target]
-      );
+        this.writeUsage();
     }
-
-    //this.write = `Asked for rate : "${value}" [${author}]`;
 
     this.intercept();
   }
 
+  writeUsage() {
+    this.showUsage = true;
+    this.write = ``;
+  }
+
+  compute() {
+    this.ratesService.getRates(this.base, this.target).subscribe(
+      rates => {this.result = rates.rates[this.target] * Number(this.amount); this.showUI=false;},
+      error =>  this.writeUsage()
+    );
+  }
 }
