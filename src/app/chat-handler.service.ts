@@ -67,4 +67,8 @@ export class ChatHandlerService {
     return ('00' + number.toString()).slice(-2)
   }
 
+  public isMe(name) {
+     let result = this.me == name;
+     return result;
+  }
 }
