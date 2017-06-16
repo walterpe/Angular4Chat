@@ -1,0 +1,16 @@
+<div *ngIf="!isReady" class="spinner"></div>
+<div *ngIf="isReady">
+  <h3>Here are the sunrise and sunset informations for {{city}}</h3>
+  <div class="btn-container">
+    <button (click)="showInfo('sunrise', 'Sunrise')">Sunrise</button>
+    <button (click)="showInfo('sunset', 'Sunset')">Sunset</button>
+    <button (click)="showInfo('solar_noon', 'Solar')">Solar</button>
+    <button (click)="showInfo('day_length', 'Day length')">Day length</button>
+    <button (click)="showInfo('civil_twilight_begin', 'Civil twilight begin')">Civil twilight begin</button>
+    <button (click)="showInfo('civil_twilight_end', 'Civil twilight end')">Civil twilight end</button>
+    <button (click)="showInfo('nautical_twilight_begin', 'Nautical twilight start')">Nautical twilight start</button>
+    <button (click)="showInfo('nautical_twilight_end', 'Nautical twilight end')">Nautical twilight end</button>
+    <button (click)="showInfo('astronomical_twilight_begin', 'Astronomical twilight start')">Astronomical twilight start</button>
+    <button (click)="showInfo('astronomical_twilight_end', 'Astronomical twilight end')">Astronomical twilight end</button>
+  </div>
+</div>

@@ -8,16 +8,25 @@ import {UsersListComponent} from "./users-list/users-list.component";
 import {ChatCommunicationService} from "./chat-communication.service";
 import {ChatViewComponent} from "./chat-view/chat-view.component";
 import {RouterModule} from "@angular/router";
+import { HttpModule, JsonpModule } from '@angular/http';
 import {routes} from "./route";
 import {LoginViewComponent} from "./login-view/login-view.component";
 import {DisconnectedViewComponent} from "./disconnected-view/disconnected-view.component";
 import {ConnectedGuard} from "./connected.guard";
 import {MessageViewComponent} from "./message-view/message-view.component";
 import {PluginTestComponent} from "./plugin-test/plugin-test.component";
+import {PluginWeatherComponent} from "./plugin-weather/plugin-weather.component";
 import {MessageInterceptorComponent} from "./message-interceptor/message-interceptor.component";
+import { PluginRatesComponent } from './plugin-rates/plugin-rates.component';
+import { PluginRatesService } from './plugin-rates/plugin-rates.service';
+import { PluginChuckComponent } from './plugin-chuck/plugin-chuck.component';
+import {ChuckService} from "./chuck.service";
+import { PluginIpComponent } from './plugin-ip/plugin-ip.component';
+import {IpServiceService} from "./ip-service.service";
+import { PluginSunriseSunsetComponent } from './plugin-sunrise-sunset/plugin-sunrise-sunset.component';
+import {SunriseSunsetService} from "./plugin-sunrise-sunset/sunrise-sunset.service";
 import {PluginGiphyComponent} from "./plugin-giphy/plugin-giphy.component";
 import {GiphyService} from "./services/giphy.service";
-import {HttpModule} from "@angular/http";
 import {PluginBombComponent} from './plugin-bomb/plugin-bomb.component';
 import {PluginBeerComponent} from './plugin-beer/plugin-beer.component';
 import {BeerService} from './beer/beer-service';
@@ -31,24 +40,34 @@ import {BeerService} from './beer/beer-service';
     DisconnectedViewComponent,
     MessageInterceptorComponent,
     PluginTestComponent,
+    PluginWeatherComponent,
     MessageViewComponent,
     PluginGiphyComponent,
     PluginBombComponent,
     PluginBeerComponent,
-    MessageViewComponent
+    PluginRatesComponent,
+    PluginChuckComponent,
+    PluginIpComponent,
+    PluginSunriseSunsetComponent,
+    PluginGiphyComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
     BrowserModule,
     HttpModule,
+    JsonpModule,
     FormsModule
   ],
   providers: [
     ChatHandlerService,
     ChatCommunicationService,
     ConnectedGuard,
-    GiphyService,
-    BeerService
+    BeerService,
+    PluginRatesService,
+    ChuckService,
+    IpServiceService,
+    SunriseSunsetService,
+    GiphyService
   ],
   bootstrap: [AppComponent]
 })

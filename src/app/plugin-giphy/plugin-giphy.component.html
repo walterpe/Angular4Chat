@@ -1,3 +1,8 @@
 <div>
   <img [src]="src" *ngIf="src"/>
+  <i class="fa fa-thumbs-up" aria-hidden="true" (click)="addGif2Favorites()"></i>
+</div>
+
+<div *ngIf="favorites">
+  <img *ngFor="let favoriteGif of favorites[me]" [src]="favoriteGif"/>
 </div>

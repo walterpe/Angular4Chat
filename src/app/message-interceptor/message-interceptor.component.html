@@ -1,5 +1,10 @@
 <div class="text">
   <plugin-test [message]="message" (interceptor)="intercept()" (discard)="discardMessage()"></plugin-test>
+  <plugin-weather [message]="message" (interceptor)="intercept()" (discard)="discardMessage()"></plugin-weather>
+  <plugin-rates [message]="message" (interceptor)="intercept()" (discard)="discardMessage()"></plugin-rates>
+  <plugin-chuck [message]="message" (interceptor)="intercept()" (discard)="discardMessage()"></plugin-chuck>
+  <app-plugin-ip [message]="message" (interceptor)="intercept()" (discard)="discardMessage()"></app-plugin-ip>
+  <plugin-sunrise-sunset [message]="message" (interceptor)="intercept()" (discard)="discardMessage()"></plugin-sunrise-sunset>
   <plugin-giphy [message]="message" (interceptor)="intercept()" (discard)="discardMessage()"></plugin-giphy>
   <plugin-bomb [message]="message" (interceptor)="intercept()" (discard)="discardMessage()"></plugin-bomb>
   <plugin-beer [message]="message" (interceptor)="intercept()" (discard)="discardMessage()"></plugin-beer>
