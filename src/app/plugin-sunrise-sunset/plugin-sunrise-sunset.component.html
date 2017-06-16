@@ -1,0 +1,14 @@
+<div *ngIf="!isReady" class="spinner"></div>
+<div *ngIf="isReady">
+  <h3>Here are the sunrise and sunset informations for {{city}}</h3>
+  <p>Sunrise starts: {{response.sunrise|date:"medium"}}</p>
+  <p>Sunset starts: {{response.sunset|date:"medium"}}</p>
+  <p>Solar noon: {{response.solar_noon|date:"medium"}}</p>
+  <p>Day length: {{response.day_length}}</p>
+  <p>Civil twilight begins: {{response.civil_twilight_begin|date:"medium"}}</p>
+  <p>Civil twilight ends: {{response.civil_twilight_end|date:"medium"}}</p>
+  <p>Nautical twilight starts: {{response.nautical_twilight_begin|date:"medium"}}</p>
+  <p>Nautical twilight ends: {{response.nautical_twilight_end|date:"medium"}}</p>
+  <p>Astronomical twilight starts: {{response.astronomical_twilight_begin|date:"medium"}}</p>
+  <p>Astronomical twilight ends: {{response.astronomical_twilight_end|date:"medium"}}</p>
+</div>
