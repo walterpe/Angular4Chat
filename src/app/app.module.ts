@@ -1,7 +1,7 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from "@angular/platform-browser";
+import {NgModule} from "@angular/core";
 
-import { AppComponent } from './app.component';
+import {AppComponent} from "./app.component";
 import {FormsModule} from "@angular/forms";
 import {ChatHandlerService} from "./chat-handler.service";
 import {UsersListComponent} from "./users-list/users-list.component";
@@ -18,7 +18,18 @@ import {PluginTestComponent} from "./plugin-test/plugin-test.component";
 import {MessageInterceptorComponent} from "./message-interceptor/message-interceptor.component";
 import { PluginRatesComponent } from './plugin-rates/plugin-rates.component';
 import { PluginRatesService } from './plugin-rates/plugin-rates.service';
-
+import { PluginChuckComponent } from './plugin-chuck/plugin-chuck.component';
+import {ChuckService} from "./chuck.service";
+import { PluginIpComponent } from './plugin-ip/plugin-ip.component';
+import {IpServiceService} from "./ip-service.service";
+import {HttpModule} from "@angular/http";
+import {PluginGiphyComponent} from "./plugin-giphy/plugin-giphy.component";
+import {GiphyService} from "./services/giphy.service";
+import {HttpModule} from "@angular/http";
+import { PluginSunriseSunsetComponent } from './plugin-sunrise-sunset/plugin-sunrise-sunset.component';
+import {SunriseSunsetService} from "./plugin-sunrise-sunset/sunrise-sunset.service";
+import {PluginGiphyComponent} from "./plugin-giphy/plugin-giphy.component";
+import {GiphyService} from "./services/giphy.service";
 
 @NgModule({
   declarations: [
@@ -30,7 +41,11 @@ import { PluginRatesService } from './plugin-rates/plugin-rates.service';
     MessageInterceptorComponent,
     PluginTestComponent,
     MessageViewComponent,
-    PluginRatesComponent
+    PluginRatesComponent,
+    PluginChuckComponent,
+    PluginIpComponent,
+    PluginSunriseSunsetComponent,
+    PluginGiphyComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
@@ -43,7 +58,11 @@ import { PluginRatesService } from './plugin-rates/plugin-rates.service';
     ChatHandlerService,
     ChatCommunicationService,
     ConnectedGuard,
-    PluginRatesService
+    PluginRatesService,
+    ChuckService,
+    IpServiceService,
+    SunriseSunsetService,
+    GiphyService
   ],
   bootstrap: [AppComponent]
 })

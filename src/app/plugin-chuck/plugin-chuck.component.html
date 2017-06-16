@@ -1,0 +1,32 @@
+<div>
+  <div *ngIf="commandCalled === 'chuck'">
+    <img src="{{chuckJoke?.icon_url}}" alt="" />
+    <img (click)="addOrRemoveFavorite(chuckJoke)" src="../assets/favorite_icon.png" [class.active] = "isInFavorite(chuckJoke)"  class="favorite" alt="ajouter/enlever des favoris" />
+    <div>
+      {{chuckJoke?.value}}
+    </div>
+  </div>
+
+
+  <div *ngIf="commandCalled === 'chuckhelp'">
+    <div *ngFor="let category of categories">
+      <button type="button"(click)="showJokeByCategory(category)">{{category}}</button> 
+     
+    </div>
+  </div>
+
+  <div *ngIf="commandCalled === 'chuckfavorite'">
+    <h3>Vos favoris</h3>
+    <div *ngFor="let favorite of actualFavorites">
+      <img src="{{favorite?.icon_url}}" alt="" />
+      <div>
+        {{favorite?.value}}
+      </div>
+      <br />
+     
+    </div>
+  </div>
+
+
+
+</div>
