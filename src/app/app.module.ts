@@ -14,7 +14,9 @@ import {DisconnectedViewComponent} from "./disconnected-view/disconnected-view.c
 import {ConnectedGuard} from "./connected.guard";
 import {MessageViewComponent} from "./message-view/message-view.component";
 import {PluginTestComponent} from "./plugin-test/plugin-test.component";
+import {PluginWeatherComponent} from "./plugin-weather/plugin-weather.component";
 import {MessageInterceptorComponent} from "./message-interceptor/message-interceptor.component";
+import {HttpModule} from "@angular/http";
 
 @NgModule({
   declarations: [
@@ -25,12 +27,14 @@ import {MessageInterceptorComponent} from "./message-interceptor/message-interce
     DisconnectedViewComponent,
     MessageInterceptorComponent,
     PluginTestComponent,
+    PluginWeatherComponent,
     MessageViewComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpModule
   ],
   providers: [
     ChatHandlerService,
