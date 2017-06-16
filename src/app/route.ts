@@ -6,7 +6,7 @@ import {DisconnectedViewComponent} from "./disconnected-view/disconnected-view.c
 import {ConnectedGuard} from "./connected.guard";
 
 export const routes: Routes = [
-  {path: 'login', component: LoginViewComponent},
+  {path: 'login/:name', component: LoginViewComponent},
   {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path: 'chat', component: ChatViewComponent, canActivate: [ConnectedGuard]},
   {path: 'disconnected', component: DisconnectedViewComponent}

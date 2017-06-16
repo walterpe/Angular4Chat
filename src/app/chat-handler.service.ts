@@ -6,6 +6,9 @@ import {ChatCommunicationService} from "./chat-communication.service";
 
 @Injectable()
 export class ChatHandlerService {
+  messages: Message[] = [];
+  private users: string[] = [];
+  me = '';
 
   constructor(private chatCommunication: ChatCommunicationService) {
     this.chatCommunication.messagesStream().subscribe(m => {

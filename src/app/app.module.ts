@@ -27,6 +27,9 @@ import { PluginSunriseSunsetComponent } from './plugin-sunrise-sunset/plugin-sun
 import {SunriseSunsetService} from "./plugin-sunrise-sunset/sunrise-sunset.service";
 import {PluginGiphyComponent} from "./plugin-giphy/plugin-giphy.component";
 import {GiphyService} from "./services/giphy.service";
+import {PluginBombComponent} from './plugin-bomb/plugin-bomb.component';
+import {PluginBeerComponent} from './plugin-beer/plugin-beer.component';
+import {BeerService} from './beer/beer-service';
 
 @NgModule({
   declarations: [
@@ -39,6 +42,9 @@ import {GiphyService} from "./services/giphy.service";
     PluginTestComponent,
     PluginWeatherComponent,
     MessageViewComponent,
+    PluginGiphyComponent,
+    PluginBombComponent,
+    PluginBeerComponent,
     PluginRatesComponent,
     PluginChuckComponent,
     PluginIpComponent,
@@ -56,6 +62,7 @@ import {GiphyService} from "./services/giphy.service";
     ChatHandlerService,
     ChatCommunicationService,
     ConnectedGuard,
+    BeerService,
     PluginRatesService,
     ChuckService,
     IpServiceService,

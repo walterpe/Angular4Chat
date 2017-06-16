@@ -4,11 +4,11 @@ import {PluginTemplateComponent} from '../plugin-template/plugin-template.compon
 import {ChatHandlerService} from '../chat-handler.service';
 
 @Component({
-  selector: 'plugin-test',
-  templateUrl: './plugin-test.component.html',
-  styleUrls: ['./plugin-test.component.css']
+  selector: 'plugin-bomb',
+  templateUrl: './plugin-bomb.component.html',
+  styleUrls: ['./plugin-bomb.component.css']
 })
-export class PluginTestComponent extends PluginTemplateComponent {
+export class PluginBombComponent extends PluginTemplateComponent {
 
   write: string;
 
@@ -17,11 +17,11 @@ export class PluginTestComponent extends PluginTemplateComponent {
   }
 
   process(command: string, value: string, author: string) {
-    if (command != "test") {
+    if (command !== 'bomb') {
       return;
     }
-    this.write = `Test command : "${value}" [${author}]`;
-    this.intercept();
+    this.discardMessage();
+    this.chatHandlerService.messages.pop();
   }
 
 }

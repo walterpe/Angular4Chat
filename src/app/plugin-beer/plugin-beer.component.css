@@ -1,0 +1,29 @@
+.beer {
+  padding: 12px;
+  border-radius: 6px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.beer p {
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+}
+
+.beer .name {
+  color: green;
+}
+
+.beer .description {
+  color: #333333;
+  font-size: small;
+  background-color: lightgray;
+}
+
+.beer img {
+  padding: 12px;
+  max-height: 300px;
+}
+
+.flex-container {
+  display: flex; /* or inline-flex */
+}
