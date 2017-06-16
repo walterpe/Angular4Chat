@@ -15,6 +15,9 @@ import {ConnectedGuard} from "./connected.guard";
 import {MessageViewComponent} from "./message-view/message-view.component";
 import {PluginTestComponent} from "./plugin-test/plugin-test.component";
 import {MessageInterceptorComponent} from "./message-interceptor/message-interceptor.component";
+import { PluginIpComponent } from './plugin-ip/plugin-ip.component';
+import {IpServiceService} from "./ip-service.service";
+import {HttpModule} from "@angular/http";
 
 @NgModule({
   declarations: [
@@ -25,17 +28,20 @@ import {MessageInterceptorComponent} from "./message-interceptor/message-interce
     DisconnectedViewComponent,
     MessageInterceptorComponent,
     PluginTestComponent,
-    MessageViewComponent
+    MessageViewComponent,
+    PluginIpComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpModule
   ],
   providers: [
     ChatHandlerService,
     ChatCommunicationService,
-    ConnectedGuard
+    ConnectedGuard,
+    IpServiceService
   ],
   bootstrap: [AppComponent]
 })
