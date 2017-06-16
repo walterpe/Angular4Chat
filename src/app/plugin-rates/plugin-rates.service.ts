@@ -3,7 +3,6 @@ import { Observable } from 'rxjs/Observable';
 import { Http, Response }          from '@angular/http';
 
 import {Rates} from "./rates";
-import {Rate} from "./rate";
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
