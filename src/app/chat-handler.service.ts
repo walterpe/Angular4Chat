@@ -1,8 +1,7 @@
-import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs/Observable';
-import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {Injectable} from "@angular/core";
+import {Observable} from "rxjs/Observable";
 
-import {Message} from './message';
+import {Message} from "./message";
 import {ChatCommunicationService} from "./chat-communication.service";
 
 @Injectable()
@@ -19,10 +18,14 @@ export class ChatHandlerService {
 
   private messages: Message[] = [];
   private users: string[] = [];
-  private me: string = '';
+  private _me: string = '';
+
+  get me(): string {
+    return this._me;
+  }
 
   public connect(name: string) {
-    this.me = name;
+    this._me = name;
     this.chatCommunication.connect(name);
   }
 

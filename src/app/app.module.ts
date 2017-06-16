@@ -15,6 +15,9 @@ import {ConnectedGuard} from "./connected.guard";
 import {MessageViewComponent} from "./message-view/message-view.component";
 import {PluginTestComponent} from "./plugin-test/plugin-test.component";
 import {MessageInterceptorComponent} from "./message-interceptor/message-interceptor.component";
+import {PluginGiphyComponent} from "./plugin-giphy/plugin-giphy.component";
+import {GiphyService} from "./services/giphy.service";
+import {HttpModule} from "@angular/http";
 import { PluginSunriseSunsetComponent } from './plugin-sunrise-sunset/plugin-sunrise-sunset.component';
 import { HttpModule } from '@angular/http';
 import {SunriseSunsetService} from "./plugin-sunrise-sunset/sunrise-sunset.service";
@@ -37,8 +40,8 @@ import {GiphyService} from "./services/giphy.service";
   imports: [
     RouterModule.forRoot(routes),
     BrowserModule,
-    FormsModule,
-    HttpModule
+    HttpModule,
+    FormsModule
   ],
   providers: [
     ChatHandlerService,
