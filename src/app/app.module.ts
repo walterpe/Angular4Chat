@@ -18,6 +18,11 @@ import {MessageInterceptorComponent} from "./message-interceptor/message-interce
 import {PluginGiphyComponent} from "./plugin-giphy/plugin-giphy.component";
 import {GiphyService} from "./services/giphy.service";
 import {HttpModule} from "@angular/http";
+import { PluginSunriseSunsetComponent } from './plugin-sunrise-sunset/plugin-sunrise-sunset.component';
+import { HttpModule } from '@angular/http';
+import {SunriseSunsetService} from "./plugin-sunrise-sunset/sunrise-sunset.service";
+import {PluginGiphyComponent} from "./plugin-giphy/plugin-giphy.component";
+import {GiphyService} from "./services/giphy.service";
 
 @NgModule({
   declarations: [
@@ -29,6 +34,7 @@ import {HttpModule} from "@angular/http";
     MessageInterceptorComponent,
     PluginTestComponent,
     MessageViewComponent,
+    PluginSunriseSunsetComponent,
     PluginGiphyComponent
   ],
   imports: [
@@ -41,6 +47,7 @@ import {HttpModule} from "@angular/http";
     ChatHandlerService,
     ChatCommunicationService,
     ConnectedGuard,
+    SunriseSunsetService,
     GiphyService
   ],
   bootstrap: [AppComponent]

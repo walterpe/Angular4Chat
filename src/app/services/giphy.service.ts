@@ -21,7 +21,6 @@ export class GiphyService {
     return this.http.get(URL)
       .map(r => r.json());
   }
-
   public addGif2Favorites(url: string) {
     if (!this.favorites[this.chatHandlerService.me]) {
       this.favorites[this.chatHandlerService.me] = [];

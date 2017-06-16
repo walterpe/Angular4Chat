@@ -12,7 +12,6 @@ import {ChatHandlerService} from "../chat-handler.service";
 })
 export class PluginGiphyComponent extends PluginTemplateComponent {
 
-
   public src: string;
   public favorites: any[];
   public me: string;
