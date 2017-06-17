@@ -20,6 +20,9 @@ export class PluginIpComponent extends PluginTemplateComponent {
   private write: string;
 
   process(command: string, value: string, author: string) {
+    const firerPrefix = "_countryFirer";
+    const withFirerCommand = "countryWithFirer";
+
     if (command == "ip") {
 
       this.write = `IP_ko command : "${value}" [${author}]`;
@@ -32,15 +35,30 @@ export class PluginIpComponent extends PluginTemplateComponent {
         }
       );
 
-    } else if ( command == "country" ) {
+    } else if ( command == withFirerCommand ) {
 
-      if ( this.chatService.isMe(value) ) {
+      const hasSpace = value.indexOf(" ") != -1;
+      const targetUser = hasSpace ? value.slice(0, value.indexOf(" ")) : value;
+
+      if ( this.chatService.isMe(targetUser) ) {
+
+        const otherContent : string = hasSpace ? value.slice(value.indexOf(" ") + 1) : null;
+        const toDiscard = new RegExp(` ${firerPrefix}.*`)
+        const firer : string = otherContent ?
+          ( otherContent.startsWith(firerPrefix) ? otherContent.replace(firerPrefix, "") :
+            `me[${this.chatService.me}], with trashFirer : "${otherContent.replace(toDiscard, "")}"` )
+          : this.chatService.me;
 
         let myIpCommand = ``;
         this.ipService.findIpInfo(myIpCommand).subscribe(ip => {
-          let myCountryStr : string = `my[${value}] country is : ${ip.country_name}`;
+          let myCountryStr : string = `my[${targetUser}] country is : ${ip.country_name}, fired by[${firer}]`;
           this.chatService.send(myCountryStr);
         });
+      }
+      this.discardMessage();
+    } else if ( command == "country" ) {
+      if ( this.chatService.isMe(author) ) {
+        this.chatService.send(`/${withFirerCommand} ${value} ${firerPrefix}${this.chatService.me}`);
       }
       this.discardMessage();
     } else {
